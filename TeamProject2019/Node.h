@@ -14,6 +14,7 @@ public:
 	Node();
 	~Node();
 
+	virtual void load(){}
 	virtual void update() {}
 	virtual void draw() {}
 
