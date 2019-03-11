@@ -24,6 +24,18 @@ public:
 	virtual void update();
 	virtual void draw();
 
-	virtual void printPosition();
+	int getX();
+	int getY();
 
+	void movePosition(int x, int y);		//移動分のマスをセット
+
+	bool isKeyUp();
+	bool isKeyDown();
+	bool isKeyLeft();
+	bool isKeyRight();
+
+
+	//debug
+	virtual void printPosition();
+	//debug
 };
