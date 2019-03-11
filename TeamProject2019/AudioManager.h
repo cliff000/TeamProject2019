@@ -1,7 +1,6 @@
 #pragma once
-#include "Node.h"
 
-class AudioManager : Node {
+class AudioManager {
 public :
 	enum Se { High, Low };
 	void load();
@@ -10,7 +9,7 @@ public :
 	bool IsMovable();
 
 private:
-	const double movableRange = 0.2;
+	const double movableRange = 0.1;
 	int circleImage;
 	int ses[2];
 	int soundNumPerMeasure;
@@ -20,6 +19,5 @@ private:
 
 	void InitializeSoundSpan(int bpm);
 	void CheckSound();
-	void CircleCount();
 	double UpdateDeltaTime();
 };

@@ -13,7 +13,7 @@ void AudioManager::load()
 	ses[Se::Low] = LoadSoundMem("TeamProject2019/Assets/Sound/click_03-low.wav");
 	circleImage = LoadGraph("TeamProject2019/Assets/Image/Circle.png");
 	prevTime = GetNowCount();
-	InitializeSoundSpan(90);
+	InitializeSoundSpan(240);
 }
 
 void AudioManager::update()
@@ -24,7 +24,13 @@ void AudioManager::update()
 
 void AudioManager::draw()
 {
-	DrawRotaGraph(200, 200, (soundSpan - soundWaitElapsed) / soundSpan, 0, circleImage, true);
+	const double defaultCircleSize = 0.15;
+	const int circlePosX = 320;
+	const int circlePosY = 100;
+	DrawRotaGraph(circlePosX, circlePosY, defaultCircleSize, 0, circleImage, true);
+	DrawRotaGraph(circlePosX, circlePosY,  
+				  0.2 * (soundSpan - soundWaitElapsed) / soundSpan + defaultCircleSize,
+				  0, circleImage, true);
 }
 
 void AudioManager::InitializeSoundSpan(int bpm)
@@ -36,9 +42,9 @@ void AudioManager::InitializeSoundSpan(int bpm)
 void AudioManager::CheckSound()
 {
 	soundWaitElapsed += UpdateDeltaTime();
-	if (soundWaitElapsed > soundSpan) 
+	if (soundWaitElapsed > soundSpan)
 	{
-		if (soundNumPerMeasure == 0) 
+		if (soundNumPerMeasure == 0)
 		{
 			PlaySoundMem(ses[Se::High], DX_PLAYTYPE_BACK);
 		}
@@ -49,11 +55,6 @@ void AudioManager::CheckSound()
 		soundNumPerMeasure = (soundNumPerMeasure + 1) % 4;
 		soundWaitElapsed -= soundSpan;
 	}
-}
-
-void AudioManager::CircleCount()
-{
-
 }
 
 //1フレームに2回以上呼ぶとバグるぞ
