@@ -58,7 +58,7 @@ void Stage::update() {
 	{
 		isMoved = true;					//行動済み状態をリセットする
 	}
-	else if (Key[KEY_INPUT_R])			//debug
+	if (Key[KEY_INPUT_R])				//debug
 	{
 		isAbleToMove = false;
 	}
@@ -76,4 +76,9 @@ void Stage::draw()
 		true
 	);
 
+}
+
+void Stage::printPosition()
+{
+	printfDx("position: %d, %d\n", pos[0], pos[1]);
 }

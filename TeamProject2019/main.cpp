@@ -1,14 +1,15 @@
 #include "DxLib.h"
-//#include "Node.h"
 #include "keyboard.h"
+//debug
 #include "stage.h"
-
+//debug
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
 
 	//debug
 	Stage* stage = new Stage();
+	int frame = 0;
 	//debug
 
 
@@ -16,8 +17,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0) {
 
 		//debug
+		clsDx();
+
+		frame++;
+
 		stage->update();
 		stage->draw();
+
+		printfDx("frame count: %d\n", frame);
+		stage->printPosition();
 		//debug
 
 	}

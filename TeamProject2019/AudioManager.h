@@ -1,7 +1,6 @@
 #pragma once
-#include "Node.h"
 
-class AudioManager : Node {
+class AudioManager{
 public :
 	enum Se { High, Low };
 	void load();

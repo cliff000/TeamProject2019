@@ -1,11 +1,9 @@
 #pragma once
-#include "Node.h"
 
 #define MAXUNITS 2
 
 
-class Unit :
-	public Node
+class Unit 
 {
 	enum Coordinate { X, Y };
 

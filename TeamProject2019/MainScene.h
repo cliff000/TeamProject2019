@@ -10,8 +10,8 @@ public:
 	MainScene();
 	~MainScene();
 
-	virtual void load() {}
-	virtual void update() {}
-	virtual void draw() {}
+	virtual void load();
+	virtual void update();
+	virtual void draw();
 };
 

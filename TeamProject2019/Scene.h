@@ -1,14 +1,13 @@
 #pragma once
-#include "Node.h"
 
-class Scene : public Node
+class Scene
 {
 public:
 	Scene();
 	~Scene();
 
-	virtual void load() {}
-	virtual void update() {}
-	virtual void draw() {}
+	virtual void load();
+	virtual void update();
+	virtual void draw();
 };
 

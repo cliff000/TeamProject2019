@@ -6,7 +6,7 @@ class Stage	// :	public Node
 {
 
 private:
-	int table[3][3] = {						//二次元配列
+	int table[3][3] = {						//二次元配列（１が自機位置）
 		{0, 0, 0},
 		{0, 0, 0},
 		{0, 0, 0}
@@ -23,5 +23,7 @@ public:
 
 	virtual void update();
 	virtual void draw();
+
+	virtual void printPosition();
 
 };
