@@ -4,6 +4,7 @@ class MainScene :
 	public Scene
 {
 	enum {postPhase, attackPhase};
+	int phase = postPhase;
 
 public:
 	MainScene();
