@@ -1,7 +1,5 @@
 #pragma once
-#include "Node.h"
 #include "State.h"
-
 #define MAXUNITS 2
 
 
@@ -17,7 +15,7 @@ private:
 	int position[2] = { 0, 0 };			//åªç›ç¿ïWÅiY, XÅj
 	
 protected:
-	State* state;
+	State* state = new State();
 
 public:
 	Unit();
@@ -26,6 +24,8 @@ public:
 	virtual void load();
 	virtual void update();
 	virtual void draw();
+
+	void changeState(State* state);
 };
 
 /*

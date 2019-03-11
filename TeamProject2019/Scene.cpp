@@ -1,4 +1,4 @@
-#include "Unit.h"
+#include "Scene.h"
 
 
 Scene::Scene()
@@ -8,17 +8,4 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-}
-
-void Unit::load() {
-
-}
-
-
-void Unit::update() {
-
-}
-
-void Unit::draw() {
-
 }

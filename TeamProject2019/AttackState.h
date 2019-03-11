@@ -1,13 +1,9 @@
 #pragma once
 #include "State.h"
 
-class AttackState
+class AttackState : public State
 {
 public:
 	AttackState();
 	~AttackState();
-
-	virtual void update() {}
-	virtual void draw() {}
-	virtual void drawFlip() {}
 };

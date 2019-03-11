@@ -1,5 +1,6 @@
 #include "Unit.h"
-
+#include "keyboard.h"
+#include "Dxlib.h"
 
 Unit::Unit()
 {
@@ -13,6 +14,9 @@ Unit::Unit()
 Unit::~Unit()
 {
 	existUnitCount--;
+
+	delete state;
+	state = nullptr;
 }
 
 void Unit::load() {
@@ -26,22 +30,22 @@ void Unit::update() {
 		if (Key[KEY_INPUT_UP] >= 1 and position[0] >= 1)
 		{
 			position[0]--;
-			isMoved = false
+			isMoved = false;
 		}
 		else if (Key[KEY_INPUT_DOWN] >= 1 and position[0] <= 1)
 		{
 			position[0]++;
-			isMoved = false
+			isMoved = false;
 		}
 		if (Key[KEY_INPUT_LEFT] >= 1 and position[0] >= 1)
 		{
 			position[1]--;
-			isMoved = false
+			isMoved = false;
 		}
 		else if (Key[KEY_INPUT_RIGHT] >= 1 and position[0] <= 1)
 		{
 			position[1]++;
-			isMoved = false
+			isMoved = false;
 		}
 	}
 	else if (!(isAbleToMove))			//s“®‰Â”\‚Å‚È‚¢‚È‚ç
@@ -52,4 +56,10 @@ void Unit::update() {
 
 void Unit::draw() {
 
+}
+
+
+void Unit::changeState(State* state) {
+	delete this->state;
+	this->state = state;
 }
