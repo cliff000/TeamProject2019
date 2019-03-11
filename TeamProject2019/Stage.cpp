@@ -29,14 +29,14 @@ void Stage::update() {
 			table[pos[0]][pos[1]] = 0;
 			pos[0]--;
 			table[pos[0]][pos[1]] = 1;
-			isMoved = false;
+			isMoved = true;
 		}
 		else if (Key[KEY_INPUT_DOWN] == 1 && pos[0] <= 1)
 		{
 			table[pos[0]][pos[1]] = 0;
 			pos[0]++;
 			table[pos[0]][pos[1]] = 1;
-			isMoved = false;
+			isMoved = true;
 		}
 
 		if (Key[KEY_INPUT_LEFT] == 1 && pos[1] >= 1)
@@ -44,23 +44,23 @@ void Stage::update() {
 			table[pos[0]][pos[1]] = 0;
 			pos[1]--;
 			table[pos[0]][pos[1]] = 1;
-			isMoved = false;
+			isMoved = true;
 		}
 		else if (Key[KEY_INPUT_RIGHT] == 1 && pos[1] <= 1)
 		{
 			table[pos[0]][pos[1]] = 0;
 			pos[1]++;
 			table[pos[0]][pos[1]] = 1;
-			isMoved = false;
+			isMoved = true;
 		}
 	}
 	else if (!(isAbleToMove))			//行動可能でないなら
 	{
-		isMoved = true;					//行動済み状態をリセットする
+		isMoved = false;				//行動済み状態をリセットする
 	}
 	if (Key[KEY_INPUT_R])				//debug
 	{
-		isAbleToMove = false;
+		isMoved = false;
 	}
 }
 
