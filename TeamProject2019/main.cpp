@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include "Node.h"
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	DxLib_Init();	// DXƒ‰ƒCƒuƒ‰ƒŠ‰Šú‰»ˆ—
