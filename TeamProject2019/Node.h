@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <string>
 
 //Šî–{‚·‚×‚Ä‚ÌƒNƒ‰ƒX‚Í‚±‚ê‚ğŒp³‚µ‚Ä‚­‚¾‚³‚¢
 class Node
@@ -8,6 +9,7 @@ private:
 	std::list<Node*> children;
 	Node* parent;
 	bool kill = false; //true‚¾‚ÆÁ‹‚³‚ê‚é
+	std::string name = "node";
 
 public:
 
@@ -27,5 +29,6 @@ public:
 
 	std::list<Node*> getChildren() { return children; }
 	Node* getParent() { return parent; }
+	std::string getName{ return name; }
 };
 
