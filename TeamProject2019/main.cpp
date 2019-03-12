@@ -1,10 +1,12 @@
 #include "DxLib.h"
 #include "keyboard.h"
 #include "stage.h"
+#include "AudioManager.h"
 //debug
 
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+	SetBackgroundColor(230, 230, 230);
 	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
 
 	//debug
@@ -12,12 +14,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int frame = 0;
 	//debug
 
+	AudioManager* audioManager = new AudioManager();
+	audioManager->load();
 
 	// while(裏画面を表画面に反映, メッセージ処理, 画面クリア)
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0) {
 
 		//debug
 		clsDx();
+
+		audioManager->update();
+		audioManager->draw();
 
 		frame++;
 
