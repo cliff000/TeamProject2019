@@ -1,9 +1,9 @@
 #pragma once
+#include "State.h"
 
 #define MAXUNITS 2
 
-
-class Unit 
+class Unit
 {
 	enum Coordinate { X, Y };
 
@@ -13,6 +13,9 @@ private:
 	int existUnitCount = 0;				//現在自機ユニット数
 
 	int position[2] = { 0, 0 };			//現在座標（Y, X）
+	
+protected:
+	State* state;
 
 	unsigned int color = 0;				//debug
 

@@ -3,7 +3,7 @@
 class MainScene :
 	public Scene
 {
-	enum {postPhase, attackPhase};
+	enum {postPhase, attackPhase};	
 	int phase = postPhase;
 
 public:
