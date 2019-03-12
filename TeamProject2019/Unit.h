@@ -30,6 +30,7 @@ public:
 	virtual void draw();
 
 	void changeState(State* state);
+	void hitAction(Unit* other);
 };
 
 /*

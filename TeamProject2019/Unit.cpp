@@ -93,3 +93,8 @@ void Unit::changeState(State* state) {
 	this->state = state;
 	this->state->setOwner(this);
 }
+
+
+void Unit::hitAction(Unit* other) {
+	this->state->hitAction(other->state);
+}
