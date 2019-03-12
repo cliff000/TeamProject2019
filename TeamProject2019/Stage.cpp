@@ -1,4 +1,5 @@
 #include "Stage.h"
+#include "Image.h"
 #include "DxLib.h"
 #include "keyboard.h"
 
@@ -8,9 +9,14 @@ Stage::Stage()
 	unit1 = new Unit();
 	table[unit1->getY()][unit1->getX()] = 1;			//ユニット配置
 
-	
+
 
 	color = GetColor(0, 0, 255);		//debug
+
+	image = Image::read("TeamProject2019/Assets/Image/frame.png");
+	unitUi[0] = Image::read("TeamProject2019/Assets/Image/attack.png");
+	unitUi[1] = Image::read("TeamProject2019/Assets/Image/throw.png");
+	unitUi[2] = Image::read("TeamProject2019/Assets/Image/defense.png");
 }
 
 Stage::~Stage()
@@ -51,9 +57,21 @@ void Stage::update() {
 void Stage::draw()
 {
 	unit1->draw();
+	const double imageInterval = imageSize * imageScale;
+	//ステージの描画
+	for (int i = 0;i < 3;i++)
+	{
+		for (int k = 0;k < 9;k++)
+		{
+			if (k != 0 && k != 4 && k != 8)
+			{
+				DrawRotaGraph(leftTopX + imageInterval * k,
+					leftTopY + imageInterval * i,
+					imageScale, 0, image, true);
+			}
+		}
+	}
 }
-
-
 
 void Stage::movePosition(int x, int y)
 {

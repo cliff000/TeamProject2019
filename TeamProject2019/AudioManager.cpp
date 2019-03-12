@@ -19,17 +19,16 @@ void AudioManager::load()
 void AudioManager::update()
 {
 	CheckSound();
-	printfDx("%lf\n%lf\n%d\n%d", soundWaitElapsed, soundSpan, ses[Se::Low], IsMovable());
 }
 
 void AudioManager::draw()
 {
-	const double defaultCircleSize = 0.15;
+	const double defaultCircleSize = 0.11;
 	const int circlePosX = 320;
-	const int circlePosY = 100;
+	const int circlePosY = 70;
 	DrawRotaGraph(circlePosX, circlePosY, defaultCircleSize, 0, circleImage, true);
 	DrawRotaGraph(circlePosX, circlePosY,  
-				  0.2 * (soundSpan - soundWaitElapsed) / soundSpan + defaultCircleSize,
+				  0.14 * (soundSpan - soundWaitElapsed) / soundSpan + defaultCircleSize,
 				  0, circleImage, true);
 }
 
