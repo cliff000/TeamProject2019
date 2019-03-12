@@ -5,13 +5,10 @@
 
 Stage::Stage()
 {
+	unit1 = new Unit();
+	table[unit1->getY()][unit1->getX()] = 1;			//ユニット配置
 
-	pos[0] = 1;							//Y座標
-	pos[1] = 0;							//X座標
-	table[pos[0]][pos[1]] = 1;			//ユニット配置
-
-	isAbleToMove = true;				//行動可能にしておく
-	isMoved = false;					//行動済み解除
+	
 
 	color = GetColor(0, 0, 255);		//debug
 }
@@ -21,7 +18,8 @@ Stage::~Stage()
 }
 
 void Stage::update() {
-	if (isAbleToMove && !(isMoved))		//行動可能かつ行動済みでないなら判定を取る
+	unit1->update();
+	/*if (isAbleToMove && !(isMoved))		//行動可能かつ行動済みでないなら判定を取る
 	{
 		//各キー入力に対する処理
 		if (isKeyUp() && pos[0] >= 1)
@@ -47,45 +45,30 @@ void Stage::update() {
 	if (Key[KEY_INPUT_R])				//debug
 	{
 		isMoved = false;
-	}
+	}*/
 }
 
 void Stage::draw()
 {
-	DrawBox(
-		pos[1] * 40,
-		pos[0] * 40,
-		(pos[1] + 1) * 40,
-		(pos[0] + 1) * 40,
-		color,
-		true
-	);
+	unit1->draw();
 }
 
-int Stage::getX()
-{
-	return pos[1];
-}
 
-int Stage::getY()
-{
-	return pos[0];
-}
 
 void Stage::movePosition(int x, int y)
 {
-	table[pos[0]][pos[1]] = 0;
+	table[unit1->getX()][unit1->getY()] = 0;
 	if (x > 0)
-		pos[1]++;
+		unit1->addPos(1, 0);
 	else if (x < 0)
-		pos[1]--;
+		unit1->addPos(-1, 0);
 	if (y > 0)
-		pos[0]++;
+		unit1->addPos(0, 1);
 	else if (y < 0)
-		pos[0]--;
-	table[pos[0]][pos[1]] = 1;
+		unit1->addPos(0, -1);
+	table[unit1->getX()][unit1->getY()] = 1;
 
-	isMoved = true;
+	//isMoved = true;
 }
 
 bool Stage::isKeyUp()
@@ -123,5 +106,5 @@ bool Stage::isKeyRight()
 //debug
 void Stage::printPosition()
 {
-	printfDx("position: %d, %d\n", pos[0], pos[1]);
+	printfDx("position: %d, %d\n", unit1->getX(), unit1->getY());
 }

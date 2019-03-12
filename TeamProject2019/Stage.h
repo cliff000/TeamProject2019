@@ -2,7 +2,7 @@
 #include "Panel.h"
 #include "Unit.h"
 #include <vector>
-
+#include "Unit.h"
 
 
 class Stage	// :	public Node
@@ -14,11 +14,10 @@ private:
 		{0, 0, 0},
 		{0, 0, 0}
 	};
-	int pos[2] = {0, 0};					//座標管理（Y,X）
-	bool isAbleToMove = true;				//行動可能か否か（リズム的に）
-	bool isMoved = true;					//行動済みか否か
+	Unit* unit1;
 
 	unsigned int color = 0;					//debug
+	
 
 public:
 	Stage();
@@ -27,8 +26,7 @@ public:
 	virtual void update();
 	virtual void draw();
 
-	int getX();
-	int getY();
+	
 
 	void movePosition(int x, int y);		//移動分のマスをセット
 

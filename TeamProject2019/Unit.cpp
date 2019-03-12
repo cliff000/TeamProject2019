@@ -5,9 +5,10 @@
 Unit::Unit()
 {
 	existUnitCount++;					//自機数カウント
-	position[0] = 1;					//Y座標
-	position[1] = 0;					//X座標
-	isMoved = true;						//行動可能にしておく
+	pos[0] = 1;					//Y座標
+	pos[1] = 0;					//X座標
+	isAbleToMove = true;				//行動可能にしておく
+	isMoved = false;					//行動済み解除
 
 	color = GetColor(0, 0, 255);		//debug
 }
@@ -25,45 +26,65 @@ void Unit::load() {
 void Unit::update() {
 	if (isAbleToMove && !(isMoved))		//行動可能かつ行動済みでないなら判定を取る
 	{
-		if (Key[KEY_INPUT_UP] >= 1 && position[0] >= 1)
+		if (Key[KEY_INPUT_UP] >= 1 && pos[0] >= 1)
 		{
-			position[0]--;
+			pos[0]--;
 			isMoved = false;
 		}
-		else if (Key[KEY_INPUT_DOWN] >= 1 && position[0] <= 1)
+		else if (Key[KEY_INPUT_DOWN] >= 1 && pos[0] <= 1)
 		{
-			position[0]++;
+			pos[0]++;
 			isMoved = false;
 		}
 
-		if (Key[KEY_INPUT_LEFT] >= 1 && position[0] >= 1)
+		if (Key[KEY_INPUT_LEFT] >= 1 && pos[0] >= 1)
 		{
-			position[1]--;
+			pos[1]--;
 			isMoved = false;
 		}
-		else if (Key[KEY_INPUT_RIGHT] >= 1 && position[0] <= 1)
+		else if (Key[KEY_INPUT_RIGHT] >= 1 && pos[0] <= 1)
 		{
-			position[1]++;
+			pos[1]++;
 			isMoved = false;
 		}
 	}
 	else if (!(isAbleToMove))			//行動可能でないなら
 	{
-		isMoved = true;					//行動済み状態をリセットする
+		isMoved = false;				//行動済み状態をリセットする
+	}
+	if (Key[KEY_INPUT_R])				//debug
+	{
+		isMoved = false;
 	}
 }
 
 void Unit::draw() {
 	
 	DrawBox(
-		position[1] * 40,
-		position[0] * 40,
-		(position[1] + 1) * 40,
-		(position[0] + 1) * 40,
+		pos[1] * 40,
+		pos[0] * 40,
+		(pos[1] + 1) * 40,
+		(pos[0] + 1) * 40,
 		color,
 		true
 	);									//debug
 
+}
+
+int Unit::getX()
+{
+	return pos[1];
+}
+
+int Unit::getY()
+{
+	return pos[0];
+}
+
+void Unit::addPos(int x, int y)
+{
+	pos[1] += x;
+	pos[0] += y;
 }
 
 
