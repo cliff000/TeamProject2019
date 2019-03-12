@@ -13,7 +13,7 @@ void AudioManager::load()
 	ses[Se::Low] = LoadSoundMem("TeamProject2019/Assets/Sound/click_03-low.wav");
 	circleImage = LoadGraph("TeamProject2019/Assets/Image/Circle.png");
 	prevTime = GetNowCount();
-	InitializeSoundSpan(240);
+	InitializeSoundSpan(120);
 }
 
 void AudioManager::update()
