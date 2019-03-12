@@ -62,4 +62,5 @@ void Unit::draw() {
 void Unit::changeState(State* state) {
 	delete this->state;
 	this->state = state;
+	this->state->setOwner(this);
 }

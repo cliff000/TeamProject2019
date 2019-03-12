@@ -19,3 +19,11 @@ void State::draw(double x, double y, double width, double height) {
 		DrawExtendGraph(x - width, y, x, y + height, img, true);
 	}
 }
+
+void State::setOwner(Unit* owner) {
+	this->owner = owner;
+}
+
+void State::hitAction(State* other) {
+	other->hitAction(this);
+}

@@ -4,6 +4,7 @@
 #include "AttackState.h"
 #include "DefenseState.h"
 #include "ThrowState.h"
+#include "BlockState.h"
 #include "keyboard.h"
 #include "DxLib.h"
 
@@ -40,6 +41,10 @@ void MainScene::update() {
 		if (Key[KEY_INPUT_C] == 1) {
 			one->changeState(new ThrowState());
 			two->changeState(new ThrowState());
+		}
+		if (Key[KEY_INPUT_V]== 1) {
+			one->changeState(new BlockState());
+			two->changeState(new BlockState());
 		}
 	}
 }
