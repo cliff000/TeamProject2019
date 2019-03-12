@@ -2,13 +2,12 @@
 #include "State.h"
 #define MAXUNITS 2
 
-
 class Unit
 {
 	enum Coordinate { X, Y };
 
 private:
-	bool isAbleToMove = false;			//行動可能か否か（リズムマネージャーより）
+	bool isAbleToMove = true;			//行動可能か否か（リズムマネージャーより）
 	bool isMoved = false;				//行動済みか否か
 	int existUnitCount = 0;				//現在自機ユニット数
 
@@ -16,6 +15,8 @@ private:
 	
 protected:
 	State* state = new State();
+
+	unsigned int color = 0;				//debug
 
 public:
 	Unit();
@@ -29,11 +30,11 @@ public:
 };
 
 /*
-0 1 2
--------
-0| | | |
-1| | | |
-2| | | |
--------
-こんな感じ？
+	  0 1 2
+	 -------
+	0| | | |
+	1| | | |
+	2| | | |
+	 -------
+	こんな感じ？
 */
