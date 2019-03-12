@@ -7,11 +7,11 @@ Stage::Stage()
 {
 	unit1p = new Unit1P();
 	unit1p->setStage(this);
-	table[1][0] = 1;									//ユニット配置
+	table[1][0] += 1;									//ユニット配置
 
-	unit2p->setStage(this);
 	unit2p = new Unit2P();
-	table[1][0] = 2;									//ユニット配置
+	unit2p->setStage(this);
+	table[1][0] += 2;									//ユニット配置
 
 	color = GetColor(0, 0, 255);						//debug
 }
