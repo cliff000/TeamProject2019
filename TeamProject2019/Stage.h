@@ -1,6 +1,8 @@
 #pragma once
 #include "Panel.h"
 #include "Unit.h"
+#include "Unit1P.h"
+#include "Unit2P.h"
 #include <vector>
 
 
@@ -13,7 +15,9 @@ private:
 		{0, 0, 0},
 		{0, 0, 0}
 	};
-	Unit* unit1;
+	//Unit* unit1;
+	Unit1P* unit1p;
+	Unit2P* unit2p;
 
 	unsigned int color = 0;					//debug
 	
@@ -21,11 +25,11 @@ public:
 	Stage();
 	~Stage();
 
-	void update();
-	void draw();
+	virtual void update();
+	virtual void draw();
 
-	bool isAbleToMove(int cy, int cx, int y, int x);	//移動可能かの確認
-	void moveStage(int x, int y);						//テーブルでの移動処理
+	bool isAbleToMove(int cy, int cx, int y, int x, int player);	//移動可能かの確認
+	void moveStage(int x, int y, int player);						//テーブルでの移動処理
 
 	//debug
 	void printPosition();
