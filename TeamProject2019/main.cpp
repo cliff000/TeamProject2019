@@ -1,6 +1,5 @@
 #include "DxLib.h"
 #include "keyboard.h"
-#include "MainScene.h"
 #include "stage.h"
 //debug
 
@@ -27,6 +26,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		printfDx("frame count: %d\n", frame);
 		stage->printPosition();
+		stage->printTable();
 		//debug
 	}
 
