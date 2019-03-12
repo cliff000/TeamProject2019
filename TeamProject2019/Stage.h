@@ -2,10 +2,9 @@
 #include "Panel.h"
 #include "Unit.h"
 #include <vector>
-#include "Unit.h"
 
 
-class Stage	// :	public Node
+class Stage
 {
 
 private:
@@ -18,25 +17,18 @@ private:
 
 	unsigned int color = 0;					//debug
 	
-
 public:
 	Stage();
 	~Stage();
 
-	virtual void update();
-	virtual void draw();
+	void update();
+	void draw();
 
-	
-
-	void movePosition(int x, int y);		//移動分のマスをセット
-
-	bool isKeyUp();
-	bool isKeyDown();
-	bool isKeyLeft();
-	bool isKeyRight();
-
+	bool isAbleToMove(int cy, int cx, int y, int x);	//移動可能かの確認
+	void moveStage(int x, int y);						//テーブルでの移動処理
 
 	//debug
-	virtual void printPosition();
+	void printPosition();
+	void printTable();
 	//debug
 };
