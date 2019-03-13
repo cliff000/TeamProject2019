@@ -51,6 +51,12 @@ void Unit::addPos(int y, int x, int player)
 	isMoved = true;
 }
 
+void Unit::setPos(int y, int x, int player) {
+	stage->setStage(y, x, player);
+	pos[0] = y;
+	pos[1] = x;
+}
+
 void Unit::changeState(State* state) {
 	delete this->state;
 	this->state = state;

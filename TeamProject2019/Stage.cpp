@@ -14,7 +14,7 @@ Stage::Stage()
 	unit1p = new Unit1P();
 	unit1p->setStage(this);
 	unit1p->setPos(1, 1, 1);
-	unit1p->changeState(new AttackState());
+	unit1p->changeState(new DefenseState());
 
 	block1p_1 = new Unit1P();
 	block1p_1->setStage(this);
@@ -35,7 +35,7 @@ Stage::Stage()
 	unit2p = new Unit2P();
 	unit2p->setStage(this);
 	unit2p->setPos(1, 7, 2);
-	unit2p->changeState(new AttackState());
+	unit2p->changeState(new DefenseState());
 
 	block2p_1 = new Unit2P();
 	block2p_1->setStage(this);
@@ -162,11 +162,11 @@ void Stage::initialPossession(int player)
 	}
 }
 
-int Stage::getActualX(int x) {
+double Stage::getActualX(double x) {
 	return leftTopX + imageInterval * x;
 }
 
-int Stage::getActualY(int y) {
+double Stage::getActualY(double y) {
 	return leftTopY + imageInterval * y;
 }
 

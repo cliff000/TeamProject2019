@@ -3,7 +3,6 @@
 #include "keyboard.h"
 #include "Stage.h"
 #include "AudioManager.h"
-
 Unit2P::Unit2P()
 {
 	Unit::Unit();

@@ -45,8 +45,8 @@ public:
 	void moveStage(int x, int y, int player);						//テーブルでの移動処理
 	void setStage(int x, int y, int player);						//テーブルでの配置処理（強制）
 	void initialPossession(int player);								//テーブル初期処理
-	int getActualX(int x); //テーブル上のx座標を実際のx座標に変換する
-	int getActualY(int y); //テーブル上のy座標を実際のy座標に変換する
+	double getActualX(double x); //テーブル上のx座標を実際のx座標に変換する
+	double getActualY(double y); //テーブル上のy座標を実際のy座標に変換する
 	double getImageScale() { return imageScale; }
 
 
