@@ -47,7 +47,6 @@ void Unit2P::update() {
 }
 
 void Unit2P::draw() {
-	printfDx("unit2x:%d", stage->getActualX(pos[1]));
 	state->draw(stage->getActualX(pos[1]), stage->getActualY(pos[0]), stage->getImageScale(), true);
 }
 
