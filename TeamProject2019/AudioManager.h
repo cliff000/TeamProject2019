@@ -3,21 +3,21 @@
 class AudioManager{
 public :
 	enum Se { High, Low };
-	void load();
-	void update();
-	void draw();
-	bool IsMovable();
+	static void load();
+	static void update();
+	static void draw();
+	static bool IsMovable();
 
 private:
-	const double movableRange = 0.1;
-	int circleImage;
-	int ses[2];
-	int soundNumPerMeasure;
-	double soundSpan = 0;
-	double soundWaitElapsed = 0;
-	double prevTime;
+	static const double movableRange;
+	static int circleImage;
+	static int ses[2];
+	static int soundNumPerMeasure;
+	static double soundSpan;
+	static double soundWaitElapsed;
+	static double prevTime;
 
-	void InitializeSoundSpan(int bpm);
-	void CheckSound();
-	double UpdateDeltaTime();
+	static void InitializeSoundSpan(int bpm);
+	static void CheckSound();
+	static double UpdateDeltaTime();
 };

@@ -1,10 +1,19 @@
 #include "Unit2P.h"
 #include "DxLib.h"
 #include "keyboard.h"
+#include "Stage.h"
+#include "AudioManager.h"
+
+Unit2P::Unit2P()
+{
+	Unit::Unit();
+	pos[0] = 1;
+	pos[1] = 7;
+}
 
 void Unit2P::update() {
 	state->update();
-	if (isAbleToMove && !(isMoved))		//行動可能かつ行動済みでないなら判定を取る
+	if (AudioManager::IsMovable() && !(isMoved))		//行動可能かつ行動済みでないなら判定を取る
 	{
 		if (Key[KEY_INPUT_UP] >= 1)
 		{
@@ -24,21 +33,22 @@ void Unit2P::update() {
 		}
 		
 	}
-	else if (!(isAbleToMove))			//行動可能でないなら
+	else if (!(AudioManager::IsMovable()))			//行動可能でないなら
 	{
 		isMoved = false;				//行動済み状態をリセットする
 	}
 
-	//debug
-	if (Key[KEY_INPUT_R])
+	/*debug
+	if (AudioManager::IsMovable())
 	{
 		isMoved = false;
 	}
-	//debug
+	//debug*/
 }
 
 void Unit2P::draw() {
-	state->draw(400 + pos[1] * 64, 200 + pos[0] * 64, -64, 64);
+	printfDx("unit2x:%d", stage->getActualX(pos[1]));
+	state->draw(stage->getActualX(pos[1]), stage->getActualY(pos[0]), stage->getImageScale(), true);
 }
 
 /*int Unit2P::isPlayer()

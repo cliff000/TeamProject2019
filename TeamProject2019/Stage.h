@@ -10,10 +10,10 @@ class Stage
 {
 
 private:
-	int table[3][3] = {						//二次元配列（１が自機位置）
-		{0, 0, 0},
-		{0, 0, 0},
-		{0, 0, 0}
+	int table[3][9] = {						//二次元配列（１が自機位置）
+		{0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0, 0}
 	};
 	//Unit* unit1;
 	Unit1P* unit1p;
@@ -23,6 +23,7 @@ private:
 
 	const int imageSize = 512;
 	const double imageScale = 70.0 / imageSize;
+	const double imageInterval = imageSize * imageScale;
 	int image;
 	int leftTopX = 40;
 	int leftTopY = 160;
@@ -38,6 +39,7 @@ public:
 	void moveStage(int x, int y, int player);						//テーブルでの移動処理
 	int getActualX(int x); //テーブル上のx座標を実際のx座標に変換する
 	int getActualY(int y); //テーブル上のy座標を実際のy座標に変換する
+	double getImageScale() { return imageScale; }
 
 
 	//debug

@@ -7,7 +7,7 @@ private:
 	int player = 2;
 
 public:
-	Unit2P() {}
+	Unit2P();
 	~Unit2P() {}
 
 	virtual void update();

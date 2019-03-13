@@ -1,10 +1,19 @@
 #include "Unit1P.h"
 #include "DxLib.h"
 #include "keyboard.h"
+#include "Stage.h"
+#include "AudioManager.h"
+
+Unit1P::Unit1P()
+{
+	Unit::Unit();
+	pos[0] = 1;
+	pos[1] = 1;
+}
 
 void Unit1P::update() {
 	state->update();
-	if (isAbleToMove && !(isMoved))		//行動可能かつ行動済みでないなら判定を取る
+	if (AudioManager::IsMovable() && !(isMoved))		//行動可能かつ行動済みでないなら判定を取る
 	{
 		if (Key[KEY_INPUT_W] >= 1)
 		{
@@ -23,21 +32,21 @@ void Unit1P::update() {
 			addPos(0, 1, player);
 		}
 	}
-	else if (!(isAbleToMove))			//行動可能でないなら
+	else if (!(AudioManager::IsMovable()))			//行動可能でないなら
 	{
 		isMoved = false;				//行動済み状態をリセットする
 	}
 
-	//debug
-	if (Key[KEY_INPUT_R])
+	/*debug
+	if (AudioManager::IsMovable())
 	{
 		isMoved = false;
 	}
-	//debug
+	//debug*/
 }
 
 void Unit1P::draw() {
-	state->draw(100 + pos[1] * 64, 200 + pos[0] * 64, 64, 64);
+	state->draw(stage->getActualX(pos[1]), stage->getActualY(pos[0]), stage->getImageScale(), false);
 }
 
 /*int Unit1P::isPlayer()

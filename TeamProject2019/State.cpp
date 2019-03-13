@@ -11,13 +11,8 @@ State::~State()
 {
 }
 
-void State::draw(double x, double y, double width, double height) {
-	if (width >= 0) {
-		DrawExtendGraph(x, y, x + width, y + height, img, true);
-	}
-	else {
-		DrawExtendGraph(x - width, y, x, y + height, img, true);
-	}
+void State::draw(int x, int y, double extRate, bool turnFlag) {
+	DrawRotaGraph(x, y, extRate, 0, img, true, turnFlag);
 }
 
 void State::setOwner(Unit* owner) {

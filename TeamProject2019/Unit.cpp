@@ -25,15 +25,6 @@ Unit::~Unit()
 	existUnitCount--;
 }
 
-void Unit::load() {
-}
-
-void Unit::update() {
-}
-
-void Unit::draw() {
-}
-
 int Unit::getX()
 {
 	return pos[1];
@@ -48,6 +39,7 @@ int Unit::getPlayer()
 {
 	return player;
 }
+
 
 void Unit::addPos(int y, int x, int player)
 {

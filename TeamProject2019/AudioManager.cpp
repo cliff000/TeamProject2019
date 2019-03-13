@@ -1,6 +1,14 @@
 #include "DxLib.h"
 #include "AudioManager.h"
 
+const double AudioManager::movableRange = 0.1;
+int AudioManager::circleImage;
+int AudioManager::ses[2];
+int AudioManager::soundNumPerMeasure;
+double AudioManager::soundSpan = 0;
+double AudioManager::soundWaitElapsed = 0;
+double AudioManager::prevTime;
+
 bool AudioManager::IsMovable()
 {
 	if (soundWaitElapsed < movableRange || soundSpan - movableRange < soundWaitElapsed)return true;

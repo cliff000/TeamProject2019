@@ -32,9 +32,9 @@ public:
 
 	void addPos(int x , int y, int player);
 
-	virtual void load();
-	virtual void update();
-	virtual void draw();
+	virtual void load(){}
+	virtual void update(){}
+	virtual void draw(){}
 
 	void changeState(State* state);
 	void hitAction(Unit* other);

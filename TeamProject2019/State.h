@@ -19,7 +19,7 @@ public:
 	~State();
 
 	virtual void update() {}
-	virtual void draw(double x, double y, double width, double height);
+	virtual void draw(int x, int y, double extRate, bool turnFlag);
 
 	void setOwner(Unit* owner);
 
