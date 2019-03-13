@@ -43,6 +43,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//debug
 	}
 
+	delete stage;
+	delete audioManager;
+	delete ui;
+
 	DxLib_End(); // DXƒ‰ƒCƒuƒ‰ƒŠI—¹ˆ—
 	return 0;
 }

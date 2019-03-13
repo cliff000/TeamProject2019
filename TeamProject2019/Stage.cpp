@@ -58,9 +58,13 @@ Stage::Stage()
 Stage::~Stage()
 {
 	delete unit1p;
-	unit1p = nullptr;
 	delete unit2p;
-	unit2p = nullptr;
+	delete block1p_1;
+	delete block1p_2;
+	delete block1p_3;
+	delete block2p_1;
+	delete block2p_2;
+	delete block2p_3;
 }
 
 void Stage::update()

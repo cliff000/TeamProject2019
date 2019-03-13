@@ -9,6 +9,8 @@ Unit2P::Unit2P()
 }
 
 void Unit2P::update() {
+	Unit::update();
+
 	state->update();
 	if (AudioManager::IsMovable() && !(isMoved))		//s“®‰Â”\‚©‚Âs“®Ï‚İ‚Å‚È‚¢‚È‚ç”»’è‚ğæ‚é
 	{
