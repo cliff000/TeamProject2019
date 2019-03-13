@@ -6,7 +6,6 @@
 #include "AttackState.h"
 #include "DefenseState.h"
 #include "ThrowState.h"
-#include "BlockState.h"
 
 
 Stage::Stage()
@@ -26,27 +25,14 @@ Stage::Stage()
 
 Stage::~Stage()
 {
+	delete unit1p;
+	unit1p = nullptr;
+	delete unit2p;
+	unit2p = nullptr;
 }
 
 void Stage::update()
 {
-	if (Key[KEY_INPUT_Z] == 1) {
-		unit1p->changeState(new AttackState());
-		unit2p->changeState(new AttackState());
-	}
-	if (Key[KEY_INPUT_X] == 1) {
-		unit1p->changeState(new DefenseState());
-		unit2p->changeState(new DefenseState());
-	}
-	if (Key[KEY_INPUT_C] == 1) {
-		unit1p->changeState(new ThrowState());
-		unit2p->changeState(new ThrowState());
-	}
-	if (Key[KEY_INPUT_V] == 1) {
-		unit1p->changeState(new BlockState());
-		unit2p->changeState(new BlockState());
-	}
-
 	unit1p->update();
 	unit2p->update();
 }
@@ -86,14 +72,26 @@ bool Stage::isAbleToMove(int cy, int cx, int y, int x, int player)
 
 void Stage::moveStage(int y, int x, int player)
 {
+	Unit* u = unit1p;
 	if (player == 1) {
-		table[unit1p->getY()][unit1p->getX()] -= player;
-		table[unit1p->getY() + y][unit1p->getX() + x] += player;
+		u = unit1p;
 	}
-	else if (player == 2)
-	{
-		table[unit2p->getY()][unit2p->getX()] -= player;
-		table[unit2p->getY() + y][unit2p->getX() + x] += player;
+	else if (player == 2){
+		u = unit2p;
+	}
+
+	//‹¤’Ê‚Ìˆ—
+	table[u->getY()][u->getX()] -= player;
+	table[u->getY() + y][u->getX() + x] += player;
+
+	if (u->getX() + x == 3 || u->getX() + x == 5) {
+		u->changeState(new AttackState());
+	}
+	else if (u->getX() + x == 2 || u->getX() + x == 6) {
+		u->changeState(new ThrowState());
+	}
+	else if (u->getX() + x == 1 || u->getX() + x == 7) {
+		u->changeState(new DefenseState());
 	}
 }
 

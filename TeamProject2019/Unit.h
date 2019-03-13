@@ -1,5 +1,6 @@
 #pragma once
 #include "State.h"
+#include "DefenseState.h"
 
 #define MAXUNITS 2
 
@@ -12,7 +13,7 @@ private:
 
 protected:
 	Stage* stage;
-	State* state = new State();
+	State* state = new DefenseState();
 
 	static int existUnitCount;			//現在自機ユニット数
 	bool isAbleToMove;					//行動可能か否か（リズムマネージャーより）
