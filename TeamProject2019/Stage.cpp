@@ -3,19 +3,25 @@
 #include "DxLib.h"
 #include "keyboard.h"
 
+#include "AttackState.h"
+#include "DefenseState.h"
+#include "ThrowState.h"
+#include "BlockState.h"
+
 
 Stage::Stage()
 {
-	unit1 = new Unit();
-	unit1->setStage(this);
-	table[1][0] = 1;									//ユニット配置
+	unit1p = new Unit1P();
+	unit1p->setStage(this);
+	table[1][0] += 1;									//ユニット配置
+
+	unit2p = new Unit2P();
+	unit2p->setStage(this);
+	table[1][0] += 2;									//ユニット配置
 
 	color = GetColor(0, 0, 255);		//debug
 
 	image = Image::read("TeamProject2019/Assets/Image/frame.png");
-	unitUi[0] = Image::read("TeamProject2019/Assets/Image/attack.png");
-	unitUi[1] = Image::read("TeamProject2019/Assets/Image/throw.png");
-	unitUi[2] = Image::read("TeamProject2019/Assets/Image/defense.png");
 }
 
 Stage::~Stage()
@@ -24,12 +30,29 @@ Stage::~Stage()
 
 void Stage::update()
 {
-	unit1->update();
+	if (Key[KEY_INPUT_Z] == 1) {
+		unit1p->changeState(new AttackState());
+		unit2p->changeState(new AttackState());
+	}
+	if (Key[KEY_INPUT_X] == 1) {
+		unit1p->changeState(new DefenseState());
+		unit2p->changeState(new DefenseState());
+	}
+	if (Key[KEY_INPUT_C] == 1) {
+		unit1p->changeState(new ThrowState());
+		unit2p->changeState(new ThrowState());
+	}
+	if (Key[KEY_INPUT_V] == 1) {
+		unit1p->changeState(new BlockState());
+		unit2p->changeState(new BlockState());
+	}
+
+	unit1p->update();
+	unit2p->update();
 }
 
 void Stage::draw()
 {
-	unit1->draw();
 	const double imageInterval = imageSize * imageScale;
 	//ステージの描画
 	for (int i = 0;i < 3;i++)
@@ -44,31 +67,34 @@ void Stage::draw()
 			}
 		}
 	}
+
+	unit1p->draw();
+	unit2p->draw();
 }
 
-bool Stage::isAbleToMove(int cy, int cx, int y, int x)
+bool Stage::isAbleToMove(int cy, int cx, int y, int x, int player)
 {
 	if ((cy + y >= 0) && (cy + y <= 2) && (cx + x >= 0) && (cx + x <= 2))
 	{
-		if (table[cy + y][cx + x] == 0)
+		if (table[cy + y][cx + x] == 0 || table[cy + y][cx + x] != player)
 			return true;
-		else if (table[cy + y][cx + x] == 1)
+		else if ((table[cy + y][cx + x] == player))
 			return false;
 	}
 	else
 		return false;
 }
 
-void Stage::moveStage(int y, int x)
+void Stage::moveStage(int y, int x, int player)
 {
-	table[unit1->getY()][unit1->getX()] = 0;
-	table[unit1->getY() + y][unit1->getX() + x] = 1;
+	table[unit1p->getY()][unit1p->getX()] -= player;
+	table[unit1p->getY() + y][unit1p->getX() + x] += player;
 }
 
 //debug
 void Stage::printPosition()
 {
-	printfDx("position: %d, %d\n", unit1->getX(), unit1->getY());
+	printfDx("position1P: %d, %d\n", unit1p->getX(), unit1p->getY());
 }
 
 void Stage::printTable()
@@ -79,5 +105,6 @@ void Stage::printTable()
 		table[2][0], table[2][1], table[2][2]
 	);
 }
+
 
 
