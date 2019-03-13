@@ -9,6 +9,7 @@ double AudioManager::soundSpan = 0;
 double AudioManager::soundWaitElapsed = 0;
 double AudioManager::prevTime;
 
+
 bool AudioManager::IsMovable()
 {
 	if (soundWaitElapsed < movableRange || soundSpan - movableRange < soundWaitElapsed)return true;
