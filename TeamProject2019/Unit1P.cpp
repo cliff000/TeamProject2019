@@ -6,19 +6,19 @@ void Unit1P::update() {
 	state->update();
 	if (isAbleToMove && !(isMoved))		//s“®‰Â”\‚©‚Âs“®Ï‚Ý‚Å‚È‚¢‚È‚ç”»’è‚ðŽæ‚é
 	{
-		if (Key[KEY_INPUT_UP] >= 1)
+		if (Key[KEY_INPUT_W] >= 1)
 		{
 			addPos(-1, 0, player);
 		}
-		else if (Key[KEY_INPUT_DOWN] >= 1)
+		else if (Key[KEY_INPUT_S] >= 1)
 		{
 			addPos(1, 0, player);
 		}
-		else if (Key[KEY_INPUT_LEFT] >= 1)
+		else if (Key[KEY_INPUT_A] >= 1)
 		{
 			addPos(0, -1, player);
 		}
-		else if (Key[KEY_INPUT_RIGHT] >= 1)
+		else if (Key[KEY_INPUT_D] >= 1)
 		{
 			addPos(0, 1, player);
 		}
@@ -40,7 +40,7 @@ void Unit1P::draw() {
 	state->draw(100 + pos[1] * 64, 200 + pos[0] * 64, 64, 64);
 }
 
-int Unit1P::isPlayer()
+/*int Unit1P::isPlayer()
 {
 	return 1;
-}
+}*/

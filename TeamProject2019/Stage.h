@@ -36,6 +36,9 @@ public:
 
 	bool isAbleToMove(int cy, int cx, int y, int x, int player);	//移動可能かの確認
 	void moveStage(int x, int y, int player);						//テーブルでの移動処理
+	int getActualX(int x); //テーブル上のx座標を実際のx座標に変換する
+	int getActualY(int y); //テーブル上のy座標を実際のy座標に変換する
+
 
 	//debug
 	void printPosition();

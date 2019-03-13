@@ -21,7 +21,7 @@ Stage::Stage()
 
 	color = GetColor(0, 0, 255);		//debug
 
-	image = Image::read("TeamProject2019/Assets/Image/frame.png");
+	image = Image::read("Assets/Image/frame.png");
 }
 
 Stage::~Stage()
@@ -87,8 +87,23 @@ bool Stage::isAbleToMove(int cy, int cx, int y, int x, int player)
 
 void Stage::moveStage(int y, int x, int player)
 {
-	table[unit1p->getY()][unit1p->getX()] -= player;
-	table[unit1p->getY() + y][unit1p->getX() + x] += player;
+	if (player == 1) {
+		table[unit1p->getY()][unit1p->getX()] -= player;
+		table[unit1p->getY() + y][unit1p->getX() + x] += player;
+	}
+	else if (player == 2)
+	{
+		table[unit2p->getY()][unit2p->getX()] -= player;
+		table[unit2p->getY() + y][unit2p->getX() + x] += player;
+	}
+}
+
+int Stage::getActualX(int x) {
+	return leftTopX + imageInterval * x;
+}
+
+int Stage::getActualY(int y) {
+	return leftTopY + imageInterval * y;
 }
 
 //debug
