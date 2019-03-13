@@ -3,6 +3,9 @@
 
 class Unit1P : public Unit
 {
+private:
+	int player = 1;
+
 public :
 	Unit1P() {}
 	~Unit1P() {}

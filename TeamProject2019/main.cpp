@@ -1,9 +1,8 @@
 #include "DxLib.h"
 #include "keyboard.h"
-#include "MainScene.h"
 #include "stage.h"
 #include "AudioManager.h"
-#include "Ui.h"
+//#include "Ui.h"
 //debug
 
 
@@ -19,8 +18,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	AudioManager* audioManager = new AudioManager();
 	audioManager->load();
 
-	Ui* ui = new Ui();
-	ui->load();
+	//Ui* ui = new Ui();
+	//ui->load();
 
 	// while(裏画面を表画面に反映, メッセージ処理, 画面クリア)
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0) {
@@ -31,7 +30,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		audioManager->update();
 		audioManager->draw();
 
-		ui->draw();
+		//ui->draw();
 
 		frame++;
 
@@ -40,6 +39,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		printfDx("frame count: %d\n", frame);
 		stage->printPosition();
+		stage->printTable();
 		//debug
 	}
 

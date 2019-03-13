@@ -9,9 +9,9 @@ bool AudioManager::IsMovable()
 
 void AudioManager::load() 
 {
-	ses[Se::High] = LoadSoundMem("TeamProject2019/Assets/Sound/click_03-high.wav");
-	ses[Se::Low] = LoadSoundMem("TeamProject2019/Assets/Sound/click_03-low.wav");
-	circleImage = LoadGraph("TeamProject2019/Assets/Image/Circle.png");
+	ses[Se::High] = LoadSoundMem("Assets/Sound/click_03-high.wav");
+	ses[Se::Low] = LoadSoundMem("Assets/Sound/click_03-low.wav");
+	circleImage = LoadGraph("Assets/Image/Circle.png");
 	prevTime = GetNowCount();
 	InitializeSoundSpan(120);
 }

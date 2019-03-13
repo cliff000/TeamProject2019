@@ -3,60 +3,56 @@
 #include "DxLib.h"
 #include "keyboard.h"
 
+#include "AttackState.h"
+#include "DefenseState.h"
+#include "ThrowState.h"
+#include "BlockState.h"
+
 
 Stage::Stage()
 {
-	unit1 = new Unit();
-	table[unit1->getY()][unit1->getX()] = 1;			//ユニット配置
+	unit1p = new Unit1P();
+	unit1p->setStage(this);
+	table[1][0] += 1;									//ユニット配置
 
-
+	unit2p = new Unit2P();
+	unit2p->setStage(this);
+	table[1][0] += 2;									//ユニット配置
 
 	color = GetColor(0, 0, 255);		//debug
 
-	image = Image::read("TeamProject2019/Assets/Image/frame.png");
-	unitUi[0] = Image::read("TeamProject2019/Assets/Image/attack.png");
-	unitUi[1] = Image::read("TeamProject2019/Assets/Image/throw.png");
-	unitUi[2] = Image::read("TeamProject2019/Assets/Image/defense.png");
+	image = Image::read("Assets/Image/frame.png");
 }
 
 Stage::~Stage()
 {
 }
 
-void Stage::update() {
-	unit1->update();
-	/*if (isAbleToMove && !(isMoved))		//行動可能かつ行動済みでないなら判定を取る
-	{
-		//各キー入力に対する処理
-		if (isKeyUp() && pos[0] >= 1)
-		{
-			movePosition(0, -1);
-		}
-		else if (isKeyDown() && pos[0] <= 1)
-		{
-			movePosition(0, 1);
-		}else if (isKeyLeft() && pos[1] >= 1)
-		{
-			movePosition(-1, 0);
-		}
-		else if (isKeyRight() && pos[1] <= 1)
-		{
-			movePosition(1, 0);
-		}
+void Stage::update()
+{
+	if (Key[KEY_INPUT_Z] == 1) {
+		unit1p->changeState(new AttackState());
+		unit2p->changeState(new AttackState());
 	}
-	else if (!(isAbleToMove))			//行動可能でないなら
-	{
-		isMoved = false;				//行動済み状態をリセットする
+	if (Key[KEY_INPUT_X] == 1) {
+		unit1p->changeState(new DefenseState());
+		unit2p->changeState(new DefenseState());
 	}
-	if (Key[KEY_INPUT_R])				//debug
-	{
-		isMoved = false;
-	}*/
+	if (Key[KEY_INPUT_C] == 1) {
+		unit1p->changeState(new ThrowState());
+		unit2p->changeState(new ThrowState());
+	}
+	if (Key[KEY_INPUT_V] == 1) {
+		unit1p->changeState(new BlockState());
+		unit2p->changeState(new BlockState());
+	}
+
+	unit1p->update();
+	unit2p->update();
 }
 
 void Stage::draw()
 {
-	unit1->draw();
 	const double imageInterval = imageSize * imageScale;
 	//ステージの描画
 	for (int i = 0;i < 3;i++)
@@ -71,58 +67,59 @@ void Stage::draw()
 			}
 		}
 	}
+
+	unit1p->draw();
+	unit2p->draw();
 }
 
-void Stage::movePosition(int x, int y)
+bool Stage::isAbleToMove(int cy, int cx, int y, int x, int player)
 {
-	table[unit1->getX()][unit1->getY()] = 0;
-	if (x > 0)
-		unit1->addPos(1, 0);
-	else if (x < 0)
-		unit1->addPos(-1, 0);
-	if (y > 0)
-		unit1->addPos(0, 1);
-	else if (y < 0)
-		unit1->addPos(0, -1);
-	table[unit1->getX()][unit1->getY()] = 1;
-
-	//isMoved = true;
-}
-
-bool Stage::isKeyUp()
-{
-	if (Key[KEY_INPUT_UP] == 1 || Key[KEY_INPUT_W] == 1)
-		return true;
+	if ((cy + y >= 0) && (cy + y <= 2) && (cx + x >= 0) && (cx + x <= 2))
+	{
+		if (table[cy + y][cx + x] == 0 || table[cy + y][cx + x] != player)
+			return true;
+		else if ((table[cy + y][cx + x] == player))
+			return false;
+	}
 	else
 		return false;
 }
 
-bool Stage::isKeyDown()
+void Stage::moveStage(int y, int x, int player)
 {
-	if (Key[KEY_INPUT_DOWN] == 1 || Key[KEY_INPUT_S] == 1)
-		return true;
-	else
-		return false;
+	if (player == 1) {
+		table[unit1p->getY()][unit1p->getX()] -= player;
+		table[unit1p->getY() + y][unit1p->getX() + x] += player;
+	}
+	else if (player == 2)
+	{
+		table[unit2p->getY()][unit2p->getX()] -= player;
+		table[unit2p->getY() + y][unit2p->getX() + x] += player;
+	}
 }
 
-bool Stage::isKeyLeft()
-{
-	if (Key[KEY_INPUT_LEFT] == 1 || Key[KEY_INPUT_A] == 1)
-		return true;
-	else
-		return false;
+int Stage::getActualX(int x) {
+	return leftTopX + imageInterval * x;
 }
 
-bool Stage::isKeyRight()
-{
-	if (Key[KEY_INPUT_RIGHT] == 1 || Key[KEY_INPUT_D] == 1)
-		return true;
-	else
-		return false;
+int Stage::getActualY(int y) {
+	return leftTopY + imageInterval * y;
 }
 
 //debug
 void Stage::printPosition()
 {
-	printfDx("position: %d, %d\n", unit1->getX(), unit1->getY());
+	printfDx("position1P: %d, %d\n", unit1p->getX(), unit1p->getY());
 }
+
+void Stage::printTable()
+{
+	printfDx("table:\n %d %d %d\n %d %d %d\n %d %d %d\n",
+		table[0][0], table[0][1], table[0][2],
+		table[1][0], table[1][1], table[1][2],
+		table[2][0], table[2][1], table[2][2]
+	);
+}
+
+
+

@@ -1,11 +1,12 @@
 #pragma once
 #include "Panel.h"
 #include "Unit.h"
+#include "Unit1P.h"
+#include "Unit2P.h"
 #include <vector>
-#include "Unit.h"
 
 
-class Stage	// :	public Node
+class Stage
 {
 
 private:
@@ -14,7 +15,9 @@ private:
 		{0, 0, 0},
 		{0, 0, 0}
 	};
-	Unit* unit1;
+	//Unit* unit1;
+	Unit1P* unit1p;
+	Unit2P* unit2p;
 
 	unsigned int color = 0;					//debug
 
@@ -23,7 +26,6 @@ private:
 	int image;
 	int leftTopX = 40;
 	int leftTopY = 160;
-	int unitUi[3];
 
 public:
 	Stage();
@@ -32,17 +34,14 @@ public:
 	virtual void update();
 	virtual void draw();
 
-	
-
-	void movePosition(int x, int y);		//移動分のマスをセット
-
-	bool isKeyUp();
-	bool isKeyDown();
-	bool isKeyLeft();
-	bool isKeyRight();
+	bool isAbleToMove(int cy, int cx, int y, int x, int player);	//移動可能かの確認
+	void moveStage(int x, int y, int player);						//テーブルでの移動処理
+	int getActualX(int x); //テーブル上のx座標を実際のx座標に変換する
+	int getActualY(int y); //テーブル上のy座標を実際のy座標に変換する
 
 
 	//debug
-	virtual void printPosition();
+	void printPosition();
+	void printTable();
 	//debug
 };
