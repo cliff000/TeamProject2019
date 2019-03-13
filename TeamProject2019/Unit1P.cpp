@@ -7,8 +7,6 @@
 Unit1P::Unit1P()
 {
 	Unit::Unit();
-	pos[0] = 1;
-	pos[1] = 1;
 }
 
 void Unit1P::update() {
