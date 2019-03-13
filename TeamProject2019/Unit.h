@@ -7,6 +7,9 @@ class Stage;
 
 class Unit
 {
+private:
+	int player;
+
 protected:
 	Stage* stage;
 	State* state = new State();
@@ -24,6 +27,8 @@ public:
 
 	int getX();
 	int getY();
+
+	int getPlayer();
 
 	void addPos(int x , int y, int player);
 

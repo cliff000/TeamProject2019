@@ -47,8 +47,3 @@ void Unit2P::draw() {
 		true
 	);
 }
-
-int Unit2P::isPlayer()
-{
-	return 2;
-}

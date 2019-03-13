@@ -12,6 +12,4 @@ public:
 
 	virtual void update();
 	virtual void draw();
-
-	int isPlayer();
 };

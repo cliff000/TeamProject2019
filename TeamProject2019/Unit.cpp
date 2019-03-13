@@ -44,6 +44,11 @@ int Unit::getY()
 	return pos[0];
 }
 
+int Unit::getPlayer()
+{
+	return player;
+}
+
 void Unit::addPos(int y, int x, int player)
 {
 	if (stage->isAbleToMove(pos[0], pos[1], y, x, player)) {
@@ -54,7 +59,6 @@ void Unit::addPos(int y, int x, int player)
 
 	isMoved = true;
 }
-
 
 void Unit::changeState(State* state) {
 	delete this->state;
