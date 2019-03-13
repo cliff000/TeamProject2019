@@ -13,43 +13,51 @@ Stage::Stage()
 {
 	unit1p = new Unit1P();
 	unit1p->setStage(this);
-	unit1p->setPos(1, 1, 1);
+	table[unit1p->getY()][unit1p->getX()] += 1;
+	unit1p->setPos(1, 1, 1, 0);
 	unit1p->changeState(new AttackState());
 
 	block1p_1 = new Unit1P();
 	block1p_1->setStage(this);
-	block1p_1->setPos(0, 0, 1);
+	table[block1p_1->getY()][block1p_1->getX()] += 1;
+	block1p_1->setPos(0, 0, 1, 1);
 	block1p_1->changeState(new BlockState());
 
 	block1p_2 = new Unit1P();
 	block1p_2->setStage(this);
-	block1p_2->setPos(1, 0, 1);
+	table[block1p_2->getY()][block1p_2->getX()] += 1;
+	block1p_2->setPos(1, 0, 1, 2);
 	block1p_2->changeState(new BlockState());
 
 	block1p_3 = new Unit1P();
 	block1p_3->setStage(this);
-	block1p_3->setPos(2, 0, 1);
+	table[block1p_3->getY()][block1p_3->getX()] += 1;
+	block1p_3->setPos(2, 0, 1, 3);
 	block1p_3->changeState(new BlockState());
 
 
 	unit2p = new Unit2P();
 	unit2p->setStage(this);
-	unit2p->setPos(1, 7, 2);
+	table[unit2p->getY()][unit2p->getX()] += 2;
+	unit2p->setPos(1, 7, 2, 0);
 	unit2p->changeState(new AttackState());
 
 	block2p_1 = new Unit2P();
 	block2p_1->setStage(this);
-	block2p_1->setPos(0, 8, 2);
+	table[block2p_1->getY()][block2p_1->getX()] += 2;
+	block2p_1->setPos(0, 8, 2, 1);
 	block2p_1->changeState(new BlockState());
 
 	block2p_2 = new Unit2P();
 	block2p_2->setStage(this);
-	block2p_2->setPos(1, 8, 2);
+	table[block2p_2->getY()][block2p_2->getX()] += 2;
+	block2p_2->setPos(1, 8, 2, 2);
 	block2p_2->changeState(new BlockState());
 
 	block2p_3 = new Unit2P();
 	block2p_3->setStage(this);
-	block2p_3->setPos(2, 8, 2);
+	table[block2p_3->getY()][block2p_3->getX()] += 2;
+	block2p_3->setPos(2, 8, 2, 3);
 	block2p_3->changeState(new BlockState());
 
 	image = Image::read("Assets/Image/frame.png");
@@ -139,27 +147,46 @@ void Stage::moveStage(int y, int x, int player)
 	}
 }
 
-void Stage::setStage(int y, int x, int player)
+void Stage::setStage(int y, int x, int player, int blockIndex)
 {
 	if (player == 1) {
-		table[unit1p->getY()][unit1p->getX()] -= player;
-		table[y][x] += player;
+		if (blockIndex == 1) {
+			table[block1p_1->getY()][block1p_1->getX()] -= player;
+			table[y][x] += player;
+		}
+		else if (blockIndex == 2) {
+			table[block1p_2->getY()][block1p_2->getX()] -= player;
+			table[y][x] += player;
+		}
+		else if (blockIndex == 3) {
+			table[block1p_3->getY()][block1p_3->getX()] -= player;
+			table[y][x] += player;
+		}
+		else
+		{
+			table[unit1p->getY()][unit1p->getX()] -= player;
+			table[y][x] += player;
+		}
 	}
 	else if (player == 2)
 	{
-		table[unit2p->getY()][unit2p->getX()] -= player;
-		table[y][x] += player;
-	}
-}
-
-void Stage::initialPossession(int player)
-{
-	if (player == 1) {
-		table[unit1p->getY()][unit1p->getX()] += player;
-	}
-	else if (player == 2)
-	{
-		table[unit2p->getY()][unit2p->getX()] += player;
+		if (blockIndex == 1) {
+			table[block2p_1->getY()][block2p_1->getX()] -= player;
+			table[y][x] += player;
+		}
+		else if (blockIndex == 2) {
+			table[block2p_2->getY()][block2p_2->getX()] -= player;
+			table[y][x] += player;
+		}
+		else if (blockIndex == 3) {
+			table[block2p_3->getY()][block2p_3->getX()] -= player;
+			table[y][x] += player;
+		}
+		else
+		{
+			table[unit2p->getY()][unit2p->getX()] -= player;
+			table[y][x] += player;
+		}
 	}
 }
 

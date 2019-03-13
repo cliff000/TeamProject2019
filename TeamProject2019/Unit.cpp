@@ -8,9 +8,7 @@ int Unit::existUnitCount = 0;
 Unit::Unit()
 {
 	existUnitCount++;					//自機数カウント
-	isAbleToMove = true;				//行動可能にしておく
 	isMoved = false;					//行動済み解除
-	stage->initialPossession(player);	//ユニット配置初期処理
 }
 
 
@@ -49,9 +47,9 @@ void Unit::addPos(int y, int x, int player)
 	isMoved = true;
 }
 
-void Unit::setPos(int y, int x, int player)
+void Unit::setPos(int y, int x, int player, int index)
 {
-	stage->setStage(y, x, player);
+	stage->setStage(y, x, player, index);
 	pos[0] = y;
 	pos[1] = x;
 }

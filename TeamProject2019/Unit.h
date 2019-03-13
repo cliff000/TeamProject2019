@@ -15,11 +15,8 @@ protected:
 	State* state = new State();
 
 	static int existUnitCount;			//現在自機ユニット数
-	bool isAbleToMove;					//行動可能か否か（リズムマネージャーより）
 	bool isMoved;						//行動済みか否か
 	int pos[2] = { 0, 0 };				//現在座標（Y, X）
-
-	unsigned int color;					//debug
 
 public:
 	Unit();
@@ -31,7 +28,7 @@ public:
 	int getPlayer();
 
 	void addPos(int x , int y, int player);
-	void setPos(int x , int y, int player );
+	void setPos(int x , int y, int player, int index);
 
 	virtual void load(){}
 	virtual void update(){}
