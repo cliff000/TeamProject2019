@@ -20,6 +20,9 @@ protected:
 	bool isMoved;						//行動済みか否か
 	int pos[2] = { 0, 0 };				//現在座標（Y, X）
 
+	bool moveFlag = false;
+	double imageScale;
+
 	unsigned int color;					//debug
 
 public:
@@ -35,7 +38,7 @@ public:
 	void setPos(int x , int y, int player );
 
 	virtual void load(){}
-	virtual void update(){}
+	virtual void update();
 	virtual void draw(){}
 
 	void changeState(State* state);
