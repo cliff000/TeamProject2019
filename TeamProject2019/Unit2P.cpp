@@ -7,8 +7,6 @@
 Unit2P::Unit2P()
 {
 	Unit::Unit();
-	pos[0] = 1;
-	pos[1] = 7;
 }
 
 void Unit2P::update() {

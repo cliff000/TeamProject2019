@@ -32,6 +32,7 @@ public:
 	int getPlayer();
 
 	void addPos(int x , int y, int player);
+	void setPos(int x , int y, int player );
 
 	virtual void load(){}
 	virtual void update(){}

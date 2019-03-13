@@ -8,12 +8,9 @@ int Unit::existUnitCount = 0;
 Unit::Unit()
 {
 	existUnitCount++;					//自機数カウント
-	pos[0] = 1;							//Y座標
-	pos[1] = 0;							//X座標
 	isAbleToMove = true;				//行動可能にしておく
 	isMoved = false;					//行動済み解除
-
-	color = GetColor(0, 0, 255);		//debug
+	stage->initialPossession(player);	//ユニット配置初期処理
 }
 
 
@@ -50,6 +47,13 @@ void Unit::addPos(int y, int x, int player)
 	}
 
 	isMoved = true;
+}
+
+void Unit::setPos(int y, int x, int player)
+{
+	stage->setStage(y, x, player);
+	pos[0] = y;
+	pos[1] = x;
 }
 
 void Unit::changeState(State* state) {
