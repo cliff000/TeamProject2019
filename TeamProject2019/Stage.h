@@ -5,27 +5,25 @@
 #include "Unit2P.h"
 #include <vector>
 
-
 class Stage
 {
 
 private:
-	int table[3][9] = {						//“ñŸŒ³”z—ñi‚P‚ª©‹@ˆÊ’uj
+	int table[3][9] = { //ï¿½ñŸŒï¿½ï¿½zï¿½ï¿½iï¿½Pï¿½ï¿½ï¿½ï¿½ï¿½@ï¿½Ê’uï¿½j
 		{0, 0, 0, 0, 0, 0, 0, 0, 0},
 		{0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0, 0, 0, 0}
-	};
-	Unit1P* unit1p;
-	Unit1P* block1p_1;
-	Unit1P* block1p_2;
-	Unit1P* block1p_3;
+		{0, 0, 0, 0, 0, 0, 0, 0, 0}};
+	Unit1P *unit1p;
+	Unit1P *block1p_1;
+	Unit1P *block1p_2;
+	Unit1P *block1p_3;
 
-	Unit2P* unit2p;
-	Unit2P* block2p_1;
-	Unit2P* block2p_2;
-	Unit2P* block2p_3;
+	Unit2P *unit2p;
+	Unit2P *block2p_1;
+	Unit2P *block2p_2;
+	Unit2P *block2p_3;
 
-	unsigned int color = 0;					//debug
+	unsigned int color = 0; //debug
 
 	const int imageSize = 512;
 	const double imageScale = 70.0 / imageSize;
@@ -41,14 +39,13 @@ public:
 	virtual void update();
 	virtual void draw();
 
-	bool isAbleToMove(int cy, int cx, int y, int x, int player);	//ˆÚ“®‰Â”\‚©‚ÌŠm”F
-	void moveStage(int x, int y, int player);						//ƒe[ƒuƒ‹‚Å‚ÌˆÚ“®ˆ—
-	void setStage(int x, int y, int player);						//ƒe[ƒuƒ‹‚Å‚Ì”z’uˆ—i‹­§j
-	void initialPossession(int player);								//ƒe[ƒuƒ‹‰Šúˆ—
-	double getActualX(double x); //ƒe[ƒuƒ‹ã‚ÌxÀ•W‚ğÀÛ‚ÌxÀ•W‚É•ÏŠ·‚·‚é
-	double getActualY(double y); //ƒe[ƒuƒ‹ã‚ÌyÀ•W‚ğÀÛ‚ÌyÀ•W‚É•ÏŠ·‚·‚é
+	bool isAbleToMove(int cy, int cx, int y, int x, int player); //ï¿½Ú“ï¿½ï¿½Â”\ï¿½ï¿½ï¿½ÌŠmï¿½F
+	void moveStage(int x, int y, int player);					 //ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½Å‚ÌˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½
+	void setStage(int x, int y, int player);					 //ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½Å‚Ì”zï¿½uï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½j
+	void initialPossession(int player);							 //ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double getActualX(double x);								 //ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Û‚ï¿½xï¿½ï¿½ï¿½Wï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½
+	double getActualY(double y);								 //ï¿½eï¿½[ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½Û‚ï¿½yï¿½ï¿½ï¿½Wï¿½É•ÏŠï¿½ï¿½ï¿½ï¿½ï¿½
 	double getImageScale() { return imageScale; }
-
 
 	//debug
 	void printPosition();

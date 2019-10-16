@@ -9,14 +9,15 @@ double AudioManager::soundSpan = 0;
 double AudioManager::soundWaitElapsed = 0;
 double AudioManager::prevTime;
 
-
 bool AudioManager::IsMovable()
 {
-	if (soundWaitElapsed < movableRange || soundSpan - movableRange < soundWaitElapsed)return true;
-	else return false;
+	if (soundWaitElapsed < movableRange || soundSpan - movableRange < soundWaitElapsed)
+		return true;
+	else
+		return false;
 }
 
-void AudioManager::load() 
+void AudioManager::load()
 {
 	ses[Se::High] = LoadSoundMem("Assets/Sound/click_03-high.wav");
 	ses[Se::Low] = LoadSoundMem("Assets/Sound/click_03-low.wav");
@@ -36,7 +37,7 @@ void AudioManager::draw()
 	const int circlePosX = 320;
 	const int circlePosY = 70;
 	DrawRotaGraph(circlePosX, circlePosY, defaultCircleSize, 0, circleImage, true);
-	DrawRotaGraph(circlePosX, circlePosY,  
+	DrawRotaGraph(circlePosX, circlePosY,
 				  0.14 * (soundSpan - soundWaitElapsed) / soundSpan + defaultCircleSize,
 				  0, circleImage, true);
 }
@@ -65,7 +66,7 @@ void AudioManager::CheckSound()
 	}
 }
 
-//1ƒtƒŒ[ƒ€‚É2‰ñˆÈãŒÄ‚Ô‚ÆƒoƒO‚é‚¼
+//1ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½2ï¿½ï¿½Èï¿½Ä‚Ô‚Æƒoï¿½Oï¿½é‚¼
 double AudioManager::UpdateDeltaTime()
 {
 	double deltaTime = GetNowCount() - prevTime;

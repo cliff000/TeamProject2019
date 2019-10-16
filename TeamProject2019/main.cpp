@@ -3,50 +3,37 @@
 #include "stage.h"
 #include "AudioManager.h"
 #include "Ui.h"
-//debug
 
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+	SetBackgroundColor(0, 0, 0);
+	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK);
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-	SetBackgroundColor(230, 230, 230);
-	ChangeWindowMode(TRUE), DxLib_Init(), SetDrawScreen(DX_SCREEN_BACK); //ウィンドウモード変更と初期化と裏画面設定
+	Stage *stage = new Stage();
 
-	//debug
-	Stage* stage = new Stage();
-	int frame = 0;
-	//debug
-
-	AudioManager* audioManager = new AudioManager();
+	AudioManager *audioManager = new AudioManager();
 	audioManager->load();
 
-	Ui* ui = new Ui();
+	Ui *ui = new Ui();
 	ui->load();
 
-	// while(裏画面を表画面に反映, メッセージ処理, 画面クリア)
-	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0) {
-
-		//debug
-		//clsDx();
-
+	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0 && gpUpdateKey() == 0)
+	{
+		// updates
 		audioManager->update();
-		audioManager->draw();
-
-		ui->draw();
-
-		frame++;
-
 		stage->update();
-		stage->draw();
 
-		//printfDx("frame count: %d\n", frame);
-		//stage->printPosition();
-		//stage->printTable();
-		//debug
+		// draws
+		audioManager->draw();
+		stage->draw();
+		ui->draw();
 	}
 
+	// destruct
 	delete stage;
 	delete audioManager;
 	delete ui;
 
-	DxLib_End(); // DXライブラリ終了処理
+	DxLib_End();
 	return 0;
 }
